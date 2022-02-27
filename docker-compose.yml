@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  mysql:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mysql
+    restart: always
+
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "akam1022AK"
+      MYSQL_DATABASE: "db_tutorial"
+      MYSQL_USER: "PySlim"
+      MYSQL_PASSWORD: "ak48@1982AM"
+    volumes:
+      - ./schema:/var/lib/mysql:rw
+    networks:
+      mysql_network:
+        aliases:
+          - mysql_host
+
+volumes:
+  schema: {}
+
+networks:
+  mysql_network:
+    name:  mysql_net
+    driver: bridge
